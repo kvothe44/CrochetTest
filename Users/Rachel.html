@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    
+    <button id="loadButton">Load Content</button>
+    <script>
+        const cipher = salt => {
+    const textToChars = text => text.split('').map(c => c.charCodeAt(0));
+    const byteHex = n => ("0" + Number(n).toString(16)).substr(-2);
+    const applySaltToChar = code => textToChars(salt).reduce((a,b) => a ^ b, code);
+
+    return text => text.split('')
+      .map(textToChars)
+      .map(applySaltToChar)
+      .map(byteHex)
+      .join('');
+}
+    
+const decipher = salt => {
+    const textToChars = text => text.split('').map(c => c.charCodeAt(0));
+    const applySaltToChar = code => textToChars(salt).reduce((a,b) => a ^ b, code);
+    return encoded => encoded.match(/.{1,2}/g)
+      .map(hex => parseInt(hex, 16))
+      .map(applySaltToChar)
+      .map(charCode => String.fromCharCode(charCode))
+      .join('');
+}
+
+const urlParams = new URLSearchParams(window.location.search);
+const pass = urlParams.get("pass");
+console.log(pass);
+const myDecipher = decipher(pass);
+
+document.getElementById('loadButton').addEventListener('click', () => {
+    const main = document.querySelector('.container');
+    main.innerHTML = myDecipher("76227b746a192b2c2f6a1e382b3c2f266a676a1a2b2d2f6a1f242e2f386a092524393e383f293e2325246a7665227b74");
+});
+    </script>
+        <div class="container">
+        </div>
+</body>
