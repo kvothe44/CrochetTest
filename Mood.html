@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mood Status Board</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f0e8;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+        h1 {
+            color: #444;
+        }
+        .status-board {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        .status {
+            border-radius: 12px;
+            overflow: hidden;
+            background-color: #e0f7fa;
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        .status:hover {
+            transform: scale(1.05);
+        }
+        .status h2 {
+            margin: 10px 0;
+            color: #555;
+        }
+        .status p {
+            color: #777;
+        }
+    </style>
+</head>
+<body>
+    <h1>Ralph Status Board</h1>
+    <div class="status-board">
+        <div class="status">
+            <h2>Mood</h2>
+            <p>Doing Good</p>
+        </div>
+        <div class="status">
+            <h2>Health</h2>
+            <p>Best Its Been Since 9th November 2018</p>
+        </div>
+        <!--
+        <div class="status">
+            <h2>Relationship Status</h2>
+            <p>N/A</p>
+        </div>
+        -->
+        <div class="status">
+            <h2>Best Time to Call</h2>
+            <p>Any Time after 5pm</p>
+        </div>
+    </div>
+</body>
+</html>
