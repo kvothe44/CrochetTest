@@ -3,18 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fun Fact Box</title>
     <style>
         body {
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             height: 100vh;
             margin: 0;
             background-color: #f7f0e8; /* Light gray background */
         }
-        
-        .container {
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 500px;
+            margin-bottom: 20px;
+        }
+
+        .nav button {
+            background-color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            cursor: pointer;
+            border: none;
+        }
+
+        .nav button:hover {
+            background-color: #e0e0e0;
+        }
+
+        .fact-container {
             text-align: center;
             background-color: #fff;
             padding: 20px;
@@ -22,6 +43,15 @@
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
             max-width: 400px;
             width: 100%;
+            margin: 0 20px; /* Ensures spacing between nav buttons and fact box */
+        }
+
+        .container {
+            display: none;
+        }
+
+        .active {
+            display: block;
         }
 
         .fact {
@@ -33,14 +63,53 @@
         .photo {
             width: 100%;
             border-radius: 10px;
+            margin-bottom: 20px;
         }
-
     </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const containers = document.querySelectorAll(".container");
+            let currentIndex = 0;
+
+            function showFact(index) {
+                containers.forEach((container, i) => {
+                    container.classList.toggle("active", i === index);
+                });
+            }
+
+            function nextFact() {
+                currentIndex = (currentIndex + 1) % containers.length;
+                showFact(currentIndex);
+            }
+
+            function prevFact() {
+                currentIndex = (currentIndex - 1 + containers.length) % containers.length;
+                showFact(currentIndex);
+            }
+
+            document.getElementById("next").addEventListener("click", nextFact);
+            document.getElementById("prev").addEventListener("click", prevFact);
+
+            // Initialize the first fact
+            showFact(currentIndex);
+        });
+    </script>
 </head>
 <body>
-    <div class="container">
-        <div class="fact">Did you know? I had my wing mirror ripped off by a drunk guy (not me)</div>
-        <img class="photo" src="img/car.jpg" alt="CarBroken">
+    <div class="nav">
+        <button id="prev">Back</button>
+        <button id="next">Forward</button>
+    </div>
+
+    <div class="fact-container">
+        <div class="container">
+            <div class="fact">Did you know? I have been going to church. Good queer iInclusive vibes</div>
+        </div>
+        <div class="container">
+            <div class="fact">Did you know? I had my wing mirror ripped off by a drunk guy (not me)</div>
+            <img class="photo" src="img/car.jpg" alt="CarBroken" loading="lazy">
+        </div>
+        <!-- Add more facts as needed -->
     </div>
 </body>
 </html>
