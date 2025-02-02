@@ -17,6 +17,7 @@
         .nav {
             display: flex;
             justify-content: space-between;
+            align-items: center;
             width: 100%;
             max-width: 500px;
             margin-bottom: 20px;
@@ -58,6 +59,12 @@
             font-size: 18px;
             color: #333; /* Dark gray text */
             margin-bottom: 20px;
+        }
+
+        .date {
+            font-size: 14px;
+            color: #666; /* Lighter gray text for date */
+            margin-bottom: 10px;
         }
 
         .photo {
@@ -102,10 +109,12 @@
     </div>
 
     <div class="fact-container">
-        <div class="container">
+        <div class="container active">
+            <div class="date">2025-01-31</div>
             <div class="fact">Did you know? I have been going to church. Good queer inclusive vibes</div>
         </div>
         <div class="container">
+            <div class="date">2024-12-10</div>
             <div class="fact">Did you know? I had my wing mirror ripped off by a drunk guy (not me)</div>
             <img class="photo" src="img/car.jpg" alt="CarBroken" loading="lazy">
         </div>
